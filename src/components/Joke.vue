@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts">
-import he from "he";
+import he from 'he';
 
 export default {
   // TODO adds joke controls actions
-  name: "Joke",
+  name: 'Joke',
   props: {
     text: String,
     id: Number

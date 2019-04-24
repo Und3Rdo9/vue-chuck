@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import JokeDashboard from "@/components/JokeDashboard.vue"; // @ is an alias to /src
+import Vue from 'vue';
+import JokeDashboard from '@/components/JokeDashboard.vue'; // @ is an alias to /src
 
 export default Vue.extend({
-  name: "home",
+  name: 'home',
   components: {
     JokeDashboard
   }
