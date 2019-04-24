@@ -1,16 +1,16 @@
 <template>
   <ul v-if="hasJokes" class="joke-list">
     <li v-for="joke in jokes" v-bind:key="joke.id" :joke="joke" class="joke-list__item">
-      <Joke :text="joke.joke" :id="joke.id"/>
+      <Joke :text="joke.joke" :id="joke.id" :isFavorite="joke.isFavorite"/>
     </li>
   </ul>
 </template>
 
 <script>
-import Joke from "./Joke.vue";
+import Joke from './Joke.vue';
 
 export default {
-  name: "JokeList",
+  name: 'JokeList',
   components: {
     Joke
   },
