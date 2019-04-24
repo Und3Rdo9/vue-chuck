@@ -7,7 +7,8 @@ import { getters } from './getters';
 
 export const state = {
   items: [],
-  status: RequestStatus.INIT
+  status: RequestStatus.INIT,
+  isAutoFetching: false
 };
 
 const namespaced: boolean = true;

@@ -1,6 +1,16 @@
 <template>
   <div class="dashboard">
-    <!-- <button @click="fetchJokes(10)" class="dashboard__button">Fetch 10 Jokes</button> -->
+    <div class="dashboard__controls">
+      <button
+        v-if="jokesLength === 0"
+        @click="fetchJokes({amount: 10})"
+        class="dashboard__button"
+      >Fetch 10 random jokes</button>
+      <button
+        @click="TOGGLE_AUTO_FETCH()"
+        class="dashboard__button"
+      >Toggle autofetching a joke every 5 seconds</button>
+    </div>
     <section class="dashboard__column">
       <h2>All Jokes ({{ jokesLength }})</h2>
       <JokeList v-bind:jokes="jokes"/>
@@ -20,15 +30,17 @@ import JokeList from './JokeList.vue';
 import jokesData from '@/content/jokes';
 import { JokesState } from '../store/modules/jokes/types';
 
-const { mapState, mapActions, mapGetters } = createNamespacedHelpers('jokes');
+const {
+  mapState,
+  mapActions,
+  mapGetters,
+  mapMutations
+} = createNamespacedHelpers('jokes');
 
 export default Vue.extend({
   name: 'JokeDashboard',
   components: {
     JokeList
-  },
-  created() {
-    this.fetchJokes({ amount: 10 });
   },
   computed: {
     ...mapState({
@@ -39,7 +51,8 @@ export default Vue.extend({
     ...mapGetters(['jokesLength', 'favoriteJokes', 'favoriteJokesLength'])
   },
   methods: {
-    ...mapActions(['fetchJokes'])
+    ...mapActions(['fetchJokes']),
+    ...mapMutations(['TOGGLE_AUTO_FETCH'])
   }
 });
 </script>
@@ -50,6 +63,24 @@ export default Vue.extend({
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   grid-gap: 20px;
+}
+
+.dashboard__controls {
+  grid-column: 1 / span 2;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard__button {
+  background-color: #39b982;
+  color: white;
+  font-size: 18px;
+  box-shadow: none;
+  appearance: none;
+  padding: 0 30px;
+  margin: 10px;
+  border-radius: 30px;
+  line-height: 50px;
 }
 
 .dashboard__column {

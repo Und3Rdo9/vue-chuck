@@ -13,12 +13,15 @@
     "@types/he": "^1.1.0",
     "core-js": "^2.6.5",
     "he": "^1.2.0",
+    "lodash.throttle": "^4.1.1",
+    "lodash.union": "^4.6.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
+    "@types/lodash": "^4.14.123",
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-e2e-cypress": "^3.6.0",
     "@vue/cli-plugin-typescript": "^3.6.0",

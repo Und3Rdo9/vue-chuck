@@ -2,10 +2,17 @@ import Vuex, { StoreOptions } from 'vuex';
 import Vue from 'vue';
 import { RootState } from '../types';
 import { jokes } from './modules/jokes/jokes';
+import { jokesPlugin } from './plugins/jokesPlugin';
+import {
+  persistStorePlugin,
+  getPersistedState
+} from './plugins/persistStorePlugin';
 
 Vue.use(Vuex);
 
-const store: StoreOptions<RootState> = {
+const persistedState = getPersistedState() || {};
+
+const storeConfig: StoreOptions<RootState> = {
   // Making sure that we're doing
   // everything correctly by enabling
   // strict mode in the dev environment.
@@ -15,7 +22,14 @@ const store: StoreOptions<RootState> = {
   },
   modules: {
     jokes
-  }
+  },
+  plugins: [jokesPlugin, persistStorePlugin]
 };
 
-export default new Vuex.Store<RootState>(store);
+const store = new Vuex.Store<RootState>(storeConfig);
+
+if (persistedState !== undefined) {
+  store.replaceState(persistedState);
+}
+
+export default store;
