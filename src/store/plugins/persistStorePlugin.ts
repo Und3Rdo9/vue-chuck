@@ -3,12 +3,9 @@ import throttle from 'lodash/throttle';
 // TODO reuse mutation constants?
 // TODO improve typing
 
-const throttlePersistState = (state: any) => {
-  // WHY DOES THIS NOT WORK??
-  //throttle(() => {
+const throttlePersistState = throttle(state => {
   persistState(state);
-  //}, 500);
-};
+}, 500);
 
 export const persistStorePlugin = (store: any) => {
   store.subscribe(({ type, payload }: any, state: any) => {

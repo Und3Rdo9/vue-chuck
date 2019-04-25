@@ -10,7 +10,7 @@ import {
 
 Vue.use(Vuex);
 
-const persistedState = getPersistedState() || {};
+const persistedState = getPersistedState();
 
 const storeConfig: StoreOptions<RootState> = {
   // Making sure that we're doing
